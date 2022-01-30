@@ -23,8 +23,9 @@ public class GunLogic : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))                                                    //// Если нажата кнопка
                 {
                     objectOnHitLine.transform.GetComponent<EnemyController>().TakeSerum(gunDamage);             //// наносим урон врагу 
-                    GameStates.Score++;
-                    GameStates.NumOfRecoveredEnemies++;
+                    /// if enemy healh < 0 
+                    int scores = PlayerPrefs.GetInt("Scores")  +  1;
+                    PlayerPrefs.SetInt("Scores", scores);
                 }
             }
         }
