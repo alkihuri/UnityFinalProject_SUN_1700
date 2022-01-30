@@ -10,16 +10,15 @@ public class MovementScript : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
     private float looker;
-    public float sensitivity;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    public float sensitivity; 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
+    { 
+        DoMovement(); 
+    }
+
+    private void DoMovement()
     {
         CharacterController controller = GetComponent<CharacterController>();
         // is the controller on the ground?
