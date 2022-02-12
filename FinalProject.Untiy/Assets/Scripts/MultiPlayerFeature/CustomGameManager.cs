@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Photon.Pun;
 
 public class CustomGameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class CustomGameManager : MonoBehaviour
         _spawnPoints = _rootOfSpawnPoints.GetComponentsInChildren<Transform>().ToList();
         _player = Resources.Load<GameObject>("Player");  
         Vector3 randomPosition = _spawnPoints[Random.Range(0, _spawnPoints.Count - 1)].position;
-        var _playerOnScene = Instantiate(_player, randomPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player",randomPosition, Quaternion.identity);
     }
      
 }

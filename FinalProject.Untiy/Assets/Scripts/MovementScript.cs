@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MovementScript : MonoBehaviour
 {
@@ -14,13 +15,21 @@ public class MovementScript : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    { 
+    {
+        // Check if player is mine
+        if (!GetComponent<PhotonView>().IsMine)
+            return;
         DoMovement(); 
     }
 
     private void DoMovement()
     {
         CharacterController controller = GetComponent<CharacterController>();
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
+        if (!controller.GetComponent<PhotonView>().IsMine)
+            return;
+
         // is the controller on the ground?
         if (controller.isGrounded)
         {
@@ -36,6 +45,7 @@ public class MovementScript : MonoBehaviour
         }
         turner = Input.GetAxis("Mouse X") * sensitivity;
         looker = -Input.GetAxis("Mouse Y") * sensitivity;
+
         if (turner != 0)
         {
             //Code for action on mouse moving right
