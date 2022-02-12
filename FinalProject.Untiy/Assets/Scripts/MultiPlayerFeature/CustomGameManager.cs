@@ -7,7 +7,7 @@ using Photon.Pun;
 public class CustomGameManager : MonoBehaviour
 {
     [SerializeField] GameObject _player;
-    [SerializeField] List<Transform> _spawnPoints;
+    [SerializeField] public List<Transform> _spawnPoints;
     [SerializeField] Transform _rootOfSpawnPoints;
     void Start()
     {
