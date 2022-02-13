@@ -11,7 +11,10 @@ public class CustomGameManager : MonoBehaviour
     [SerializeField] Transform _rootOfSpawnPoints;
     void Start()
     {
-        _spawnPoints = _rootOfSpawnPoints.GetComponentsInChildren<Transform>().ToList();
+        for(int i =0;i<_rootOfSpawnPoints.childCount;i++)
+        {
+            _spawnPoints.Add(_rootOfSpawnPoints.GetChild(0));
+        }
         _player = Resources.Load<GameObject>("Player");  
         Vector3 randomPosition = _spawnPoints[Random.Range(0, _spawnPoints.Count - 1)].position;
         PhotonNetwork.Instantiate("Player",randomPosition, Quaternion.identity);
