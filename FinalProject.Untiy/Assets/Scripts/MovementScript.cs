@@ -11,7 +11,16 @@ public class MovementScript : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
     private float looker;
-    public float sensitivity; 
+    [SerializeField,Range(1,100)] float sensitivity;
+    [SerializeField] GameObject _camera;
+    private float yCameraAngle;
+    private float xCameraAngle;
+    private float _yAngleRestriction = 45;
+
+    private void Start()
+    { 
+        _camera = Camera.main.gameObject;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -51,15 +60,34 @@ public class MovementScript : MonoBehaviour
             //Code for action on mouse moving right
             transform.eulerAngles += new Vector3(0, turner, 0);
         }
-        if (looker != 0)
-        {
-            //Code for action on mouse moving right
-            transform.eulerAngles += new Vector3(looker, 0, 0);
-        }
+        YAngleRestrictionFeature(looker);
         //Applying gravity to the controller
         moveDirection.y -= gravity * Time.deltaTime;
         //Making the character move
         controller.Move(moveDirection * Time.deltaTime);
+
+
+        CursorModeSettings();
+    }
+
+    private void YAngleRestrictionFeature(float mouseY)
+    {
+        yCameraAngle += mouseY;
+        xCameraAngle = transform.rotation.eulerAngles.y;
+        var clampedYCameraAngle = Mathf.Clamp(yCameraAngle, -_yAngleRestriction, _yAngleRestriction);
+        if (yCameraAngle > _yAngleRestriction)
+            yCameraAngle = _yAngleRestriction;
+        if (yCameraAngle < -_yAngleRestriction)
+            yCameraAngle = -_yAngleRestriction;
+        _camera.transform.rotation = Quaternion.Euler(clampedYCameraAngle, xCameraAngle, 0);
+    }
+
+    private static void CursorModeSettings()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetMouseButtonDown(0))
+            Cursor.lockState = CursorLockMode.Locked;
     }
 }
 

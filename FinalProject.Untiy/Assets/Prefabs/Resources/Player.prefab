@@ -238,6 +238,7 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   sensitivity: 1
+  _camera: {fileID: 1025061513}
 --- !u!143 &5295024048975012705
 CharacterController:
   m_ObjectHideFlags: 0
@@ -309,8 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &480522600
 MonoBehaviour:
