@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class PlayerStats : MonoBehaviourPunCallbacks
 {
-    public float healthPoints = 100;
+    public float healthPoints = 100; 
 
     [PunRPC]
     public void ChangeHP(float changeValue)
@@ -27,10 +27,5 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     {
         GetComponent<PhotonView>().RPC("ChangeHP", RpcTarget.All, changeValue);
     }
-
-    private void Update()
-    {
-         
-    }
-
+      
 }
