@@ -472,8 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 3791815074186231469, guid: 8a96432036bc20f4ab4bbb0641662652, type: 3}
-  _spawnPoints:
-  - {fileID: 0}
+  _spawnPoints: []
   _rootOfSpawnPoints: {fileID: 1675177003}
 --- !u!4 &876528261
 Transform:
