@@ -16,7 +16,11 @@ public class PlayerStats : MonoBehaviourPunCallbacks
             SyncHPChanges(100);
             List<Transform> points = FindObjectOfType<CustomGameManager>()._spawnPoints;
             Vector3 pos = points[Random.Range(0, points.Count - 1)].position;
-            transform.SetPositionAndRotation(pos,Quaternion.identity);
+            CharacterController controller = GetComponent<CharacterController>();
+            //if (controller.GetComponent<PhotonView>().IsMine)
+            controller.Move(pos-transform.position);
+            transform.SetPositionAndRotation(pos, Quaternion.identity);
+
 
             Debug.Log(pos);
         }
