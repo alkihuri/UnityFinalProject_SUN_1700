@@ -6,14 +6,9 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
    
-
-    public void Lobbyscene()
+    public void LoadScene(string name)
     {
-        SceneManager.LoadScene("LOBBYSCENE");
-    }
-    public void mainScreen()
-    {
-        SceneManager.LoadScene("GameDemo");
+        SceneManager.LoadScene(name);
     }
     public void exitGame()
     {
