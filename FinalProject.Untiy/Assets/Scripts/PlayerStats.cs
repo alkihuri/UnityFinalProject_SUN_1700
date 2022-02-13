@@ -10,14 +10,14 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ChangeHP(float changeValue)
     {
-        healthPoints += changeValue; 
+        healthPoints += changeValue;
+        healthPoints = Mathf.Clamp(healthPoints, 0, 100);
         if(healthPoints<=0)
         {
             SyncHPChanges(100);
             List<Transform> points = FindObjectOfType<CustomGameManager>()._spawnPoints;
             Vector3 pos = points[Random.Range(0, points.Count - 1)].position;
-            transform.SetPositionAndRotation(pos,Quaternion.identity);
-
+            transform.SetPositionAndRotation(pos,Quaternion.identity); 
             Debug.Log(pos);
         }
     }
@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        ChangeHP(-0.2f);
+         
     }
 
 }
