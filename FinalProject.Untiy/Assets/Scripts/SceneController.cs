@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+   
+
+    public void Lobbyscene()
+    {
+        SceneManager.LoadScene("LOBBYSCENE");
+    }
     public void mainScreen()
     {
         SceneManager.LoadScene("GameDemo");
