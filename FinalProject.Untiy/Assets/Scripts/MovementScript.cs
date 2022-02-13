@@ -16,11 +16,7 @@ public class MovementScript : MonoBehaviour
     private float yCameraAngle;
     private float xCameraAngle;
     private float _yAngleRestriction = 45;
-
-    private void Start()
-    { 
-        _camera = Camera.main.gameObject;
-    }
+     
 
     // Update is called once per frame
     void FixedUpdate()
