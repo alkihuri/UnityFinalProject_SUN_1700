@@ -16,14 +16,17 @@ public class MovementScript : MonoBehaviour
     private float yCameraAngle;
     private float xCameraAngle;
     private float _yAngleRestriction = 45;
-     
+    private float speedBoost = 2;
+    public GameObject showEscapePanel;
 
-    // Update is called once per frame
+                
+// Update is called once per frame
     void FixedUpdate()
     {
         // Check if player is mine
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
+        if (GetComponent<PhotonView>())
+            if (!GetComponent<PhotonView>().IsMine)
+                return;
         DoMovement(); 
     }
 
@@ -42,7 +45,12 @@ public class MovementScript : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             //Multiply it by speed.
-            moveDirection *= speed;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                moveDirection *= speed * speedBoost;
+            }
+            else
+                moveDirection *= speed;
             //Jumping
             if (Input.GetButton("Jump"))
                 moveDirection.y = jumpSpeed;
@@ -50,6 +58,15 @@ public class MovementScript : MonoBehaviour
         }
         turner = Input.GetAxis("Mouse X") * sensitivity;
         looker = -Input.GetAxis("Mouse Y") * sensitivity;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            showEscapePanel.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            showEscapePanel.SetActive(false);
+        }
 
         if (turner != 0)
         {
