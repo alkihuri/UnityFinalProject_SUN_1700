@@ -21,11 +21,12 @@ public class MovementScript : MonoBehaviour
 
                 
 // Update is called once per frame
-void FixedUpdate()
+    void FixedUpdate()
     {
         // Check if player is mine
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
+        if (GetComponent<PhotonView>())
+            if (!GetComponent<PhotonView>().IsMine)
+                return;
         DoMovement(); 
     }
 
