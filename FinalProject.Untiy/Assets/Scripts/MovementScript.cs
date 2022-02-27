@@ -53,7 +53,10 @@ public class MovementScript : MonoBehaviour
                 moveDirection *= speed;
             //Jumping
             if (Input.GetButton("Jump"))
+            {
+                AudioManager.Instance.PlayJump();
                 moveDirection.y = jumpSpeed;
+            }
 
         }
         turner = Input.GetAxis("Mouse X") * sensitivity;
