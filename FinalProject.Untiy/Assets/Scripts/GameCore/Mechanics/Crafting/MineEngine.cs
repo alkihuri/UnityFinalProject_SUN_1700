@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Photon.Pun;
 
-public class CraftEngine : MonoBehaviour
+public class MineEngine : MonoBehaviour
 {
     [SerializeField] List<ResourceItem> resourceList = new List<ResourceItem>();
     private void Start()
@@ -20,13 +20,13 @@ public class CraftEngine : MonoBehaviour
         resourceList.Add(new ResourceItem(ResourceItem.Resource.sulfur));
         resourceList.Add(new ResourceItem(ResourceItem.Resource.wood));
     }
+    [PunRPC]
     public void AddValueToResource(float value,  ResourceItem.Resource type)
     {
-        if (GetComponent<PhotonView>().IsMine)
-        { 
-            resourceList.Where(r => r.item == type).Last().AddValue(value); 
-            PlayerPrefs.SetFloat(type.ToString(), value);
-        }
+         
+        resourceList.Where(r => r.item == type).Last().AddValue(value); 
+        PlayerPrefs.SetFloat(type.ToString(), value);
+         
     }
 
     private void Update()
@@ -35,8 +35,15 @@ public class CraftEngine : MonoBehaviour
             AddValueToResource(10, ResourceItem.Resource.sulfur);
     }
 
+    public void AddValueThroughPhotonEngine(float value, ResourceItem.Resource type)
+    {
+        object[] some = { value, type };
+        GetComponent<PhotonView>().RPC("AddValueToResource", RpcTarget.All, some);
+    }
+
+
     private void OnTriggerStay(Collider other)
     {
-            ///if (other.gameObject.GetComponent<?????? ??? ???? ?????????>)
+            ///if (other.gameObject.GetComponent<скрипт для зона крафтинга>)
     }
 }
