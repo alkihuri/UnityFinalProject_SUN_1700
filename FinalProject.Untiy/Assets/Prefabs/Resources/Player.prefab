@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 480522600}
   - component: {fileID: 9078014119110429211}
   - component: {fileID: 6923572958928781662}
+  - component: {fileID: 2966862998777246764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -483,7 +484,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 480522598}
   - {fileID: 480522600}
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!54 &480522599
@@ -559,6 +560,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 100
+--- !u!114 &2966862998777246764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791815074186231469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a4c87dd5adbeb4a9deacd88a58f761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3914127196883446372
 GameObject:
   m_ObjectHideFlags: 0
