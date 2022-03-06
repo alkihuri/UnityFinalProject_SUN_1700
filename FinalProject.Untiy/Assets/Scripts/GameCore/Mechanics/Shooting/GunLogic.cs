@@ -35,6 +35,6 @@ public class GunLogic : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(_attentionPoint, 5);
+       // Gizmos.DrawSphere(_attentionPoint, 5);
     }
 }
