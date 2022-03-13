@@ -9,13 +9,8 @@ public class NicknameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] InputField nickname;
 
-    void Start()
+    public void SetNickname()
     {
-        PhotonNetwork.NickName = nickname.ToString();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        PhotonNetwork.NickName = nickname.text.ToString();
+    } 
 }
