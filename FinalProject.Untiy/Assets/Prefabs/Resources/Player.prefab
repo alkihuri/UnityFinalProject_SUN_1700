@@ -1479,7 +1479,7 @@ Animator:
   m_GameObject: {fileID: 5269813766230824717}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d182f1c79d4f2f045ad28353ceda7893, type: 2}
+  m_Controller: {fileID: 9100000, guid: e4d9f85fc98a55746bc49479212173b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1488,7 +1488,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &692481864008857844
+--- !u!114 &3767101762516535120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1497,7 +1497,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5269813766230824717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f590490df9fdd47b3c600591cbf15e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b1fb65fa0a9f21449ea189f9cf52a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterAnim: {fileID: 2749274600765380789}
+  _animatror: {fileID: 2749274600765380789}
+  _character: {fileID: 5295024048975012705}
