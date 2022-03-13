@@ -842,6 +842,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToDestroy:
   - {fileID: 7202327092818769045}
+  - {fileID: 1025061513}
+  - {fileID: 4506692504141312272}
 --- !u!1 &3914127196883446372
 GameObject:
   m_ObjectHideFlags: 0
