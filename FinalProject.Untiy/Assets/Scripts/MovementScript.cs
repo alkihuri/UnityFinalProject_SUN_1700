@@ -11,19 +11,25 @@ public class MovementScript : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
     private float looker;
+    private float forward;
+    private float side;
     [SerializeField,Range(1,100)] float sensitivity;
     [SerializeField] GameObject _camera;
     private float yCameraAngle;
     private float xCameraAngle;
     private float _yAngleRestriction = 45;
-     
+    private float speedBoost = 2;
+    public GameObject showEscapePanel;
+    [SerializeField] FloatingJoystick _joystickTurn;
+    [SerializeField] FloatingJoystick _joystickMove;
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // Check if player is mine
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
+        if (GetComponent<PhotonView>())
+            if (!GetComponent<PhotonView>().IsMine)
+                return;
         DoMovement(); 
     }
 
@@ -39,17 +45,50 @@ public class MovementScript : MonoBehaviour
         if (controller.isGrounded)
         {
             //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+
+            forward = _joystickMove.Horizontal;
+            side = _joystickMove.Vertical;
+            #if UNITY_EDITOR
+            // forward = Input.GetAxis("Horizontal") * sensitivity;
+            //  side = -Input.GetAxis("Vertical") * sensitivity;
+            #endif
+
+
+            moveDirection = new Vector3(forward, 0, side);
             moveDirection = transform.TransformDirection(moveDirection);
             //Multiply it by speed.
-            moveDirection *= speed;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                moveDirection *= speed * speedBoost;
+            }
+            else
+                moveDirection *= speed;
             //Jumping
             if (Input.GetButton("Jump"))
+            {
+                AudioManager.Instance.PlayJump();
                 moveDirection.y = jumpSpeed;
+            }
 
         }
-        turner = Input.GetAxis("Mouse X") * sensitivity;
-        looker = -Input.GetAxis("Mouse Y") * sensitivity;
+
+        turner = _joystickTurn.Horizontal * sensitivity;
+        looker = -_joystickTurn.Vertical * sensitivity;
+
+        #if UNITY_EDITOR
+       // turner = Input.GetAxis("Mouse X") * sensitivity;
+      //  looker = -Input.GetAxis("Mouse Y") * sensitivity;
+        #endif
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            showEscapePanel.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            showEscapePanel.SetActive(false);
+        }
 
         if (turner != 0)
         {
@@ -63,7 +102,7 @@ public class MovementScript : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
 
 
-        CursorModeSettings();
+        //CursorModeSettings();
     }
 
     private void YAngleRestrictionFeature(float mouseY)
