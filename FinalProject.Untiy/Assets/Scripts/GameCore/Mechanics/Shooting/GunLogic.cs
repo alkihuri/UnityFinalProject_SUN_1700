@@ -11,7 +11,7 @@ public class GunLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /// camera innit
+        
     }
 
     private void GetRaycastInputVectors()

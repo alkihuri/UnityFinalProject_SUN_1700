@@ -37,6 +37,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PhotonNetwork.CountOfPlayers);
+        Debug.Log("Num. of players : " +  PhotonNetwork.CountOfPlayers);
     }
 }
