@@ -11,6 +11,8 @@ public class NicknameManager : MonoBehaviourPunCallbacks
 
     public void SetNickname()
     {
-        PhotonNetwork.NickName = nickname.text.ToString();
+        var nick = nickname.text.ToString();
+        nick = nick.Length > 0 ? nick : "Player" + Random.Range(1111, 9999); 
+        PhotonNetwork.NickName = nick;
     } 
 }

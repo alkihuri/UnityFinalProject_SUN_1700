@@ -13,7 +13,7 @@ public class MovementScript : MonoBehaviour
     private float looker;
     private float forward;
     private float side;
-    [SerializeField,Range(1,100)] float sensitivity;
+    [SerializeField, Range(1, 100)] float sensitivity;
     [SerializeField] GameObject _camera;
     private float yCameraAngle;
     private float xCameraAngle;
@@ -23,6 +23,13 @@ public class MovementScript : MonoBehaviour
     [SerializeField] FloatingJoystick _joystickTurn;
     [SerializeField] FloatingJoystick _joystickMove;
 
+    bool isJump = false;
+
+    public void SwitchJumpState()
+    {
+        isJump = !isJump;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -30,7 +37,7 @@ public class MovementScript : MonoBehaviour
         if (GetComponent<PhotonView>())
             if (!GetComponent<PhotonView>().IsMine)
                 return;
-        DoMovement(); 
+        DoMovement();
     }
 
     private void DoMovement()
@@ -47,12 +54,12 @@ public class MovementScript : MonoBehaviour
             //Feed moveDirection with input.
 
 
-            forward = _joystickMove.Horizontal;
-            side = _joystickMove.Vertical;
-            #if UNITY_EDITOR
+            forward = _joystickMove.Horizontal * speedBoost;
+            side = _joystickMove.Vertical * speedBoost;
+#if UNITY_EDITOR
             // forward = Input.GetAxis("Horizontal") * sensitivity;
             //  side = -Input.GetAxis("Vertical") * sensitivity;
-            #endif
+#endif
 
 
             moveDirection = new Vector3(forward, 0, side);
@@ -65,7 +72,7 @@ public class MovementScript : MonoBehaviour
             else
                 moveDirection *= speed;
             //Jumping
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump") || isJump)
             {
                 AudioManager.Instance.PlayJump();
                 moveDirection.y = jumpSpeed;
@@ -76,10 +83,10 @@ public class MovementScript : MonoBehaviour
         turner = _joystickTurn.Horizontal * sensitivity;
         looker = -_joystickTurn.Vertical * sensitivity;
 
-        #if UNITY_EDITOR
-       // turner = Input.GetAxis("Mouse X") * sensitivity;
-      //  looker = -Input.GetAxis("Mouse Y") * sensitivity;
-        #endif
+#if UNITY_EDITOR
+        // turner = Input.GetAxis("Mouse X") * sensitivity;
+        //  looker = -Input.GetAxis("Mouse Y") * sensitivity;
+#endif
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
