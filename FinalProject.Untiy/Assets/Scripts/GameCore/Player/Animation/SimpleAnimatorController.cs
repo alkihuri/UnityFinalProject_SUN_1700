@@ -14,6 +14,7 @@ public class SimpleAnimatorController : MonoBehaviour
     {
         currentSpeed = _character.velocity.magnitude;
         currentSpeed = Mathf.Clamp01(currentSpeed);
-        _animatror.SetFloat("Speed", currentSpeed);
+        _animatror.SetFloat("Speed", currentSpeed); 
+
     }
 }
