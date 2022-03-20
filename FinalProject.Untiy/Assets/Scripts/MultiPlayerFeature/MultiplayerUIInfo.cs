@@ -9,10 +9,12 @@ public class MultiplayerUIInfo : MonoBehaviour
 
     [SerializeField] TMPro.TextMeshProUGUI _text;
     [SerializeField] PhotonView _photon;
+    [SerializeField] PlayerStats _playerStats;
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        _text.text = _photon.Owner.NickName;
+        string hp = _playerStats.healthPoints.ToString("#.");
+        _text.text = _photon.Owner.NickName + " [ " + hp + " ]";
     }   
 
 

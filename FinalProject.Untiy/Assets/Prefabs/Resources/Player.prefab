@@ -635,6 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 7515906352814313388}
   _photon: {fileID: 480522597}
+  _playerStats: {fileID: 6923572958928781662}
 --- !u!1 &2778708890057182027
 GameObject:
   m_ObjectHideFlags: 0
