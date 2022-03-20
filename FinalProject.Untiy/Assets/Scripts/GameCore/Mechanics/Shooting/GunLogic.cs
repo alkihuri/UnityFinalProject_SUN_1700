@@ -1,6 +1,27 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
+[System.Serializable]
+public class Gun
+{
+    public Gun(string newName, float newDamage, float newRate, int newAmmo,float newRadius)
+    {
+        gunName = newName;
+        damage = newDamage;
+        rate = newRate;
+        ammo = newAmmo;
+        radius = newRadius;
+    }
+
+    public string gunName;
+    public float damage;
+    public float rate;
+    public int ammo; 
+    public float radius; 
+}
 
 public class GunLogic : MonoBehaviour
 {
@@ -8,6 +29,7 @@ public class GunLogic : MonoBehaviour
     Vector3 _shootDirection;
     Vector3 _originPoint;
     Vector3 _attentionPoint;
+    [SerializeField] Gun _currentGun;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +50,14 @@ public class GunLogic : MonoBehaviour
         if(Physics.Raycast(_originPoint,_shootDirection,out objectOnHitLine))
         {
             _attentionPoint = objectOnHitLine.point;
+            if(objectOnHitLine.transform.gameObject.GetComponent<PlayerStats>())
+            {
+                if(!objectOnHitLine.transform.gameObject.GetComponent<PhotonView>().IsMine)
+                {
+                    PlayerStats enemy = objectOnHitLine.transform.gameObject.GetComponent<PlayerStats>();
+                    enemy.SyncHPChanges(-_currentGun.damage);
+                }
+            }
         }
         
     }

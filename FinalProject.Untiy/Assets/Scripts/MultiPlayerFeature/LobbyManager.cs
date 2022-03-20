@@ -11,7 +11,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void Start()
     {
         //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);   
-        PhotonNetwork.NickName = "MyName" + Random.Range(1000,9999);
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.AutomaticallySyncScene = false;
         PhotonNetwork.ConnectUsingSettings();
