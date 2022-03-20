@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
 {
     public float healthPoints = 100; 
 
+
     [PunRPC]
     public void ChangeHP(float changeValue)
     {
@@ -15,9 +16,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
         if(healthPoints<=0)
         {
             SyncRespawn();
-            List<Transform> points = FindObjectOfType<CustomGameManager>()._spawnPoints;
-            Vector3 pos = points[Random.Range(0, points.Count - 1)].position;
-            transform.SetPositionAndRotation(pos,Quaternion.identity); 
+            
         }
     }
 
@@ -25,6 +24,9 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     public void  Respawn()
     {
         healthPoints = 100;
+        List<Transform> points = FindObjectOfType<CustomGameManager>()._spawnPoints;
+        Vector3 pos = points[Random.Range(0, points.Count - 1)].position;
+        transform.position = pos;
     }
 
     // Update is called once per frame
