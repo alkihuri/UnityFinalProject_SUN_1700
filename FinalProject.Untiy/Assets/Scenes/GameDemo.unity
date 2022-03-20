@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1852886563}
-  _shootClip: {fileID: 0}
+  _shootClip: {fileID: 8300000, guid: fa2a172fa1e2e394898bb080d9d26656, type: 3}
   _explosionClip: {fileID: 0}
   _jumpSound: {fileID: 8300000, guid: fa2a172fa1e2e394898bb080d9d26656, type: 3}
 --- !u!4 &1852886565

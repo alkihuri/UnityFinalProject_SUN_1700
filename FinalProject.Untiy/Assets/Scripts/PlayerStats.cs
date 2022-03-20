@@ -15,8 +15,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
         healthPoints = Mathf.Clamp(healthPoints, 0, 100);
         if(healthPoints<=0)
         {
-            SyncRespawn();
-            
+            SyncRespawn(); 
         }
     }
 
