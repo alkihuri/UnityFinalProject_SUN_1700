@@ -11,7 +11,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void Start()
     {
         //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);   
-        PhotonNetwork.NickName = "MyName" + Random.Range(1000,9999);
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.AutomaticallySyncScene = false;
         PhotonNetwork.ConnectUsingSettings();
@@ -37,6 +36,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PhotonNetwork.CountOfPlayers);
+        Debug.Log("Num. of players : " +  PhotonNetwork.CountOfPlayers);
     }
 }

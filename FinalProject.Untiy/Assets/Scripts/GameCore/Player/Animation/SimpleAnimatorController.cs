@@ -5,15 +5,19 @@ using UnityEngine;
 public class SimpleAnimatorController : MonoBehaviour
 {
     [SerializeField] Animator _animatror;
-    [SerializeField] CharacterController _character;
     float currentSpeed;
-     
+    Vector3 lastPosition;
+    float delta;
 
     // Update is called once per frame
     void Update()
     {
-        currentSpeed = _character.velocity.magnitude;
+        delta = (transform.position - lastPosition).magnitude;
+
+        currentSpeed = delta > 0 ? 1 : 0;
         currentSpeed = Mathf.Clamp01(currentSpeed);
-        _animatror.SetFloat("Speed", currentSpeed);
+        _animatror.SetFloat("Speed", currentSpeed);  
+        lastPosition = transform.position;
+
     }
 }
