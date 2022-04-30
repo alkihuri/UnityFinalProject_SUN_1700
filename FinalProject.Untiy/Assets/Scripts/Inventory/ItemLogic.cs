@@ -6,8 +6,10 @@ using UnityEngine;
 public enum itemType { food, weapon, instrument, resource, component, equipment, clothes}
 public class ItemLogic : ScriptableObject
 {
-    public itemType itemType;
+    
     public string itemName;
     public int maxAmount;
+    public GameObject itemPrefab;
+    public itemType itemType;
     public string itemDescription;
 }
